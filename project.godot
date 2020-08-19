@@ -1,0 +1,38 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "Intersections",
+"language": "GDScript",
+"path": "res://lib/Grid.gd"
+} ]
+_global_script_class_icons={
+"Intersections": ""
+}
+
+[application]
+
+config/name="Lissajous"
+run/main_scene="res://lib/Grid.tscn"
+config/icon="res://assets/icon.png"
+
+[audio]
+
+default_bus_layout=""
+
+[display]
+
+window/size/width=800
+window/size/height=800
+
+[rendering]
+
+environment/default_environment="res://assets/default_env.tres"
