@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://lib/Circle.tscn" type="PackedScene" id=1]
 [ext_resource path="res://lib/Grid.gd" type="Script" id=2]
 [ext_resource path="res://assets/ball_alpha.png" type="Texture" id=3]
+[ext_resource path="res://assets/54511.jpg" type="Texture" id=4]
 
 [sub_resource type="VisualShaderNodeInput" id=1]
 input_name = "camera"
@@ -68,130 +69,84 @@ nodes/light/connections = PoolIntArray( 2, 0, 0, 0 )
 [sub_resource type="ShaderMaterial" id=5]
 shader = SubResource( 4 )
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Control"]
 process_priority = 100
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
 
 [node name="Grid" type="Node2D" parent="."]
 material = SubResource( 5 )
-position = Vector2( 56, 40 )
 script = ExtResource( 2 )
+
+[node name="54511" type="Sprite" parent="Grid"]
+visible = false
+show_behind_parent = true
+position = Vector2( 391.579, 963.263 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="X" type="Node2D" parent="Grid"]
 material = SubResource( 5 )
-position = Vector2( 100, 45.614 )
 
 [node name="C1" parent="Grid/X" instance=ExtResource( 1 )]
 material = SubResource( 5 )
-position = Vector2( 32, -2.85087 )
+position = Vector2( 104, 32 )
 
 [node name="C2" parent="Grid/X" instance=ExtResource( 1 )]
 material = SubResource( 5 )
-position = Vector2( 98.3596, -2.85087 )
+position = Vector2( 170.36, 32 )
 
 [node name="C3" parent="Grid/X" instance=ExtResource( 1 )]
 material = SubResource( 5 )
-position = Vector2( 165.219, -2.85087 )
+position = Vector2( 237.219, 32 )
 
 [node name="C4" parent="Grid/X" instance=ExtResource( 1 )]
 material = SubResource( 5 )
-position = Vector2( 231.579, -2.85087 )
+position = Vector2( 303.579, 32 )
 
 [node name="C5" parent="Grid/X" instance=ExtResource( 1 )]
 material = SubResource( 5 )
-position = Vector2( 295.579, -2.85087 )
+position = Vector2( 367.579, 32 )
 
 [node name="C6" parent="Grid/X" instance=ExtResource( 1 )]
 material = SubResource( 5 )
-position = Vector2( 361.938, -2.85087 )
+position = Vector2( 433.938, 32 )
 
 [node name="C7" parent="Grid/X" instance=ExtResource( 1 )]
 material = SubResource( 5 )
-position = Vector2( 428.797, -2.85087 )
+position = Vector2( 500.797, 32 )
 
 [node name="C8" parent="Grid/X" instance=ExtResource( 1 )]
 material = SubResource( 5 )
-position = Vector2( 495.157, -2.85087 )
+position = Vector2( 567.157, 32 )
 
 [node name="C9" parent="Grid/X" instance=ExtResource( 1 )]
 material = SubResource( 5 )
-position = Vector2( 561.557, -2.85087 )
+position = Vector2( 633.557, 32 )
 
 [node name="C10" parent="Grid/X" instance=ExtResource( 1 )]
-visible = false
-position = Vector2( 627.917, -2.85087 )
+position = Vector2( 699.464, 30 )
 
 [node name="Y" type="Node2D" parent="Grid"]
-material = SubResource( 5 )
-position = Vector2( 96, 45.614 )
-rotation = -1.57079
 
-[node name="C1" parent="Grid/Y" instance=ExtResource( 1 )]
-visible = false
-position = Vector2( -679.817, -49.9316 )
-rotation = 1.57079
-slct_component = 1
+[node name="_X" type="Node2D" parent="Grid"]
 
-[node name="C2" parent="Grid/Y" instance=ExtResource( 1 )]
-material = SubResource( 5 )
-position = Vector2( -613.457, -49.9316 )
-rotation = 1.57079
-slct_component = 1
-
-[node name="C3" parent="Grid/Y" instance=ExtResource( 1 )]
-material = SubResource( 5 )
-position = Vector2( -546.598, -49.9316 )
-rotation = 1.57079
-slct_component = 1
-
-[node name="C4" parent="Grid/Y" instance=ExtResource( 1 )]
-material = SubResource( 5 )
-position = Vector2( -480.238, -49.9316 )
-rotation = 1.57079
-slct_component = 1
-
-[node name="C5" parent="Grid/Y" instance=ExtResource( 1 )]
-material = SubResource( 5 )
-position = Vector2( -416.238, -49.9316 )
-rotation = 1.57079
-slct_component = 1
-
-[node name="C6" parent="Grid/Y" instance=ExtResource( 1 )]
-material = SubResource( 5 )
-position = Vector2( -349.879, -49.9316 )
-rotation = 1.57079
-slct_component = 1
-
-[node name="C7" parent="Grid/Y" instance=ExtResource( 1 )]
-material = SubResource( 5 )
-position = Vector2( -283.02, -49.9316 )
-rotation = 1.57079
-slct_component = 1
-
-[node name="C8" parent="Grid/Y" instance=ExtResource( 1 )]
-material = SubResource( 5 )
-position = Vector2( -216.66, -49.9316 )
-rotation = 1.57079
-slct_component = 1
-
-[node name="C9" parent="Grid/Y" instance=ExtResource( 1 )]
-material = SubResource( 5 )
-position = Vector2( -150.26, -49.9316 )
-rotation = 1.57079
-slct_component = 1
-
-[node name="C10" parent="Grid/Y" instance=ExtResource( 1 )]
-material = SubResource( 5 )
-position = Vector2( -83.9004, -49.9316 )
-rotation = 1.57079
-slct_component = 1
+[node name="_Y" type="Node2D" parent="Grid"]
 
 [node name="Log" type="TextEdit" parent="."]
+visible = false
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = 538.489
-margin_top = 385.568
-margin_right = 788.489
-margin_bottom = 785.568
+margin_left = 152.245
+margin_top = 407.658
+margin_right = 402.245
+margin_bottom = 807.658
 text = "32-2.85087
 98.359596-2.85087
 165.218994-2.85087

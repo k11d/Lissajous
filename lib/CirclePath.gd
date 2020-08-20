@@ -7,6 +7,7 @@ var x_component
 var y_component
 var o_component
 export(CMP) var slct_component = CMP.X
+export(float) var _offset_value = 0.0
 onready var sprite = get_node("PathFollower/Position2D/Sprite")
 
 
@@ -20,15 +21,18 @@ func _ready() -> void:
     $XSlider.min_value = -$XSlider.max_value
     $YSlider.max_value = 36
     $YSlider.min_value = -$YSlider.max_value
+    $PathFollower.unit_offset = _offset_value
     select_component()
 
 
-func play(anim) ->void:
+func _play(anim) ->void:
     $AnimationPlayer.play(anim)
     
-func stop()->void:
+
+func _stop()->void:
     $AnimationPlayer.stop()
     $AnimationPlayer.seek(0.0)
+
     
 func select_component():
     if slct_component == CMP.Y:
@@ -41,8 +45,7 @@ func select_component():
         $YSlider.visible = false
         o_component = x_component
         sprite.modulate = Color(1.0, 0.3, 0.0, 1.0)
-        
-        
+
         
 func _process(delta: float) -> void:
     var p = point_position()
@@ -77,8 +80,9 @@ func point_position():
 func _on_XSlider_value_changed(value: float) -> void:
     if x_component:
         x_component += value
-    
+        $XSlider/XPolygon2D.position.x = value + 28
+        
 func _on_YSlider_value_changed(value: float) -> void:
     if y_component:
         y_component += value
-
+        $YSlider/YPolygon2D.position.y = value        
