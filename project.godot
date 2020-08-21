@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Lissajous"
-run/main_scene="res://lib/Grid.tscn"
+run/main_scene="res://lib/v2/Main.tscn"
 config/icon="res://assets/icon.png"
 
 [audio]
