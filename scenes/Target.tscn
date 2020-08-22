@@ -1,0 +1,85 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/Target.gd" type="Script" id=2]
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 0.228938 ), 0.0, 1.06874, 0, 0, Vector2( 1, 0.90293 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Line2D
+
+"
+
+[node name="Target" type="Node2D"]
+position = Vector2( -1, 0 )
+script = ExtResource( 2 )
+
+[node name="Control" type="Node2D" parent="."]
+scale = Vector2( 0.221541, 0.222442 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="ColorRect" parent="Control"]
+margin_right = 10.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 10, 10 )
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite2" type="ColorRect" parent="Control"]
+margin_left = 1.69271
+margin_right = 11.6927
+margin_bottom = 10.0
+rect_min_size = Vector2( 10, 10 )
+rect_scale = Vector2( 0.650346, 0.364289 )
+color = Color( 0.976471, 0.976471, 0.941176, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite3" type="ColorRect" parent="Control"]
+margin_top = 6.94901
+margin_right = 10.0
+margin_bottom = 16.949
+rect_min_size = Vector2( 10, 10 )
+rect_scale = Vector2( 0.980422, -0.672601 )
+color = Color( 0.98, 0.98, 0.94, 0.58 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite4" type="ColorRect" parent="Control"]
+margin_left = -3.11284
+margin_top = -1.32567
+margin_right = 6.88716
+margin_bottom = 8.67433
+rect_min_size = Vector2( 10, 10 )
+rect_scale = Vector2( 1.56209, 1.44557 )
+color = Color( 0.521569, 0.513726, 0.513726, 0.501961 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite5" type="ColorRect" parent="Control"]
+margin_left = -1.71789
+margin_right = 8.28211
+margin_bottom = 10.0
+rect_min_size = Vector2( 10, 10 )
+rect_scale = Vector2( 1.3354, 1.25946 )
+color = Color( 0.780392, 0.760784, 0.760784, 0.501961 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PoolVector2Array( 1.43889, -2.20462 )
+width = 2.0
+width_curve = SubResource( 2 )
+default_color = Color( 0.36, 0.34, 51.32, 0.45 )
+texture_mode = 1
+joint_mode = 1
+antialiased = true
+script = SubResource( 1 )

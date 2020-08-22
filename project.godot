@@ -9,30 +9,50 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node2D",
-"class": "Intersections",
+"base": "Sprite",
+"class": "BaseSpinner",
 "language": "GDScript",
-"path": "res://lib/Grid.gd"
+"path": "res://scripts/BaseSpinner.gd"
 } ]
 _global_script_class_icons={
-"Intersections": ""
+"BaseSpinner": ""
 }
 
 [application]
 
 config/name="Lissajous"
-run/main_scene="res://lib/v2/Main.tscn"
-config/icon="res://assets/icon.png"
-
-[audio]
-
-default_bus_layout=""
+run/main_scene="res://scenes/Grid.tscn"
+boot_splash/bg_color=Color( 0.0431373, 0.0509804, 0.0784314, 1 )
+config/icon="res://icon.png"
 
 [display]
 
 window/size/width=800
 window/size/height=800
 
+[importer_defaults]
+
+texture={
+"compress/bptc_ldr": 0,
+"compress/hdr_mode": 0,
+"compress/lossy_quality": 0.7,
+"compress/mode": 0,
+"compress/normal_map": 1,
+"detect_3d": true,
+"flags/anisotropic": true,
+"flags/filter": true,
+"flags/mipmaps": true,
+"flags/repeat": 1,
+"flags/srgb": 1,
+"process/HDR_as_SRGB": true,
+"process/fix_alpha_border": true,
+"process/invert_color": false,
+"process/premult_alpha": false,
+"size_limit": 0,
+"stream": false,
+"svg/scale": 1.0
+}
+
 [rendering]
 
-environment/default_environment="res://assets/default_env.tres"
+environment/default_environment="res://default_env.tres"
