@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://YComponent.tscn" type="PackedScene" id=2]
+[ext_resource path="res://XComponent.tscn" type="PackedScene" id=3]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+
+var xcomp
+var ycomp
+export(float, 0.0, 6.28, 0.1) var _theta_x := PI setget _set_theta_x
+export(float, 0.0, 500.0, 1.0) var _radius_x := 60.0 setget _set_radius_x
+export(float, 0.0, 10.0, 0.1) var _speed_x := 4.0 setget _set_speed_x
+
+export(float, 0.0, 6.28, 0.1) var _theta_y := PI setget _set_theta_y
+export(float, 0.0, 500.0, 1.0) var _radius_y := 60.0 setget _set_radius_y
+export(float, 0.0, 10.0, 0.1) var _speed_y := 4.0 setget _set_speed_y
+
+
+func _ready():
+	xcomp = get_node(\"Tracer/XComponent\")
+	ycomp = get_node(\"Tracer/YComponent\")
+
+func _set_theta_x(t):
+	_theta_x = t
+	xcomp._radius = _theta_x
+	
+func _set_radius_x(r):
+	_radius_x = r
+	xcomp._radius = _radius_x
+	
+func _set_speed_x(v):
+	_speed_x = v
+	xcomp._speed = _speed_x
+
+func _set_theta_y(t):
+	_theta_y = t
+	ycomp._theta = _theta_y
+	
+func _set_radius_y(r):
+	_radius_y = r
+	ycomp._radius = _radius_y
+	
+func _set_speed_y(v):
+	_speed_y = v
+	ycomp._speed = _speed_y
+"
+
+[node name="Tracer" type="Node2D"]
+script = SubResource( 1 )
+
+[node name="XComponent" parent="." instance=ExtResource( 3 )]
+position = Vector2( 91.6124, 312.889 )
+
+[node name="YComponent" parent="." instance=ExtResource( 2 )]
+position = Vector2( 366.972, 102.266 )

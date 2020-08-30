@@ -12,18 +12,24 @@ _global_script_classes=[ {
 "base": "Sprite",
 "class": "BaseSpinner",
 "language": "GDScript",
-"path": "res://scripts/BaseSpinner.gd"
+"path": "res://backup/scripts/BaseSpinner.gd"
+}, {
+"base": "Position2D",
+"class": "SingleComponent",
+"language": "GDScript",
+"path": "res://SingleComponent.gd"
 } ]
 _global_script_class_icons={
-"BaseSpinner": ""
+"BaseSpinner": "",
+"SingleComponent": "res://assets/orb_red.png"
 }
 
 [application]
 
 config/name="Lissajous"
-run/main_scene="res://scenes/Main.tscn"
+run/main_scene="res://Main.tscn"
 boot_splash/bg_color=Color( 0.0431373, 0.0509804, 0.0784314, 1 )
-config/icon="res://icon.png"
+config/icon="res://assets/icon.png"
 
 [display]
 

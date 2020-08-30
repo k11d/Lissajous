@@ -1,0 +1,138 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://UiTheme.tres" type="Theme" id=1]
+[ext_resource path="res://ComponentUI.gd" type="Script" id=2]
+
+[node name="Control" type="Node2D"]
+light_mask = 0
+script = ExtResource( 2 )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2( -3.68291, 481.747 )
+color = Color( 0.0235294, 0.0117647, 0.443137, 1 )
+polygon = PoolVector2Array( 3.85518, -476.251, 122.221, -469.134, 122.971, -456.398, 21.8349, -457.147, 21.0857, -428.68, 10.5976, -429.054 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="Polygon2D"]
+position = Vector2( 123.72, -408.078 )
+rotation = -3.14159
+color = Color( 0.486275, 0.0117647, 0.0117647, 1 )
+offset = Vector2( -3.85518, 475.127 )
+polygon = PoolVector2Array( 3.85518, -476.251, 122.221, -469.134, 122.971, -456.398, 21.8349, -457.147, 21.0857, -428.68, 10.5976, -429.054 )
+
+[node name="ComponentUI" type="VBoxContainer" parent="."]
+light_mask = 0
+margin_right = 960.0
+margin_bottom = 960.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ComponentUI"]
+light_mask = 0
+margin_right = 122.0
+margin_bottom = 24.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btn_speed_min" type="Button" parent="ComponentUI/HBoxContainer"]
+light_mask = 0
+margin_right = 21.0
+margin_bottom = 24.0
+text = "-"
+
+[node name="VSeparator" type="Label" parent="ComponentUI/HBoxContainer"]
+light_mask = 0
+margin_left = 25.0
+margin_top = 3.0
+margin_right = 97.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 15, 0 )
+text = "<Speed> "
+align = 1
+valign = 1
+
+[node name="btn_speed_plus" type="Button" parent="ComponentUI/HBoxContainer"]
+light_mask = 0
+margin_left = 101.0
+margin_right = 122.0
+margin_bottom = 24.0
+text = "+"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="ComponentUI"]
+light_mask = 0
+margin_top = 28.0
+margin_right = 122.0
+margin_bottom = 48.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="lbl_speed" type="Label" parent="ComponentUI/HBoxContainer3"]
+light_mask = 0
+margin_right = 24.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 24, 20 )
+text = "0"
+align = 1
+valign = 1
+
+[node name="lbl_pos" type="Label" parent="ComponentUI/HBoxContainer3"]
+light_mask = 0
+margin_left = 28.0
+margin_right = 94.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 66, 20 )
+text = "x,x"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="lbl_offset" type="Label" parent="ComponentUI/HBoxContainer3"]
+light_mask = 0
+margin_left = 98.0
+margin_right = 122.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 24, 20 )
+text = "0"
+align = 1
+valign = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ComponentUI"]
+light_mask = 0
+margin_top = 52.0
+margin_right = 122.0
+margin_bottom = 76.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btn_offset_min" type="Button" parent="ComponentUI/HBoxContainer2"]
+light_mask = 0
+margin_right = 21.0
+margin_bottom = 24.0
+text = "-"
+
+[node name="VSeparator2" type="Label" parent="ComponentUI/HBoxContainer2"]
+light_mask = 0
+margin_left = 25.0
+margin_top = 3.0
+margin_right = 97.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 15, 0 )
+text = "<Offset>"
+align = 1
+valign = 1
+
+[node name="btn_offset_plus" type="Button" parent="ComponentUI/HBoxContainer2"]
+light_mask = 0
+margin_left = 101.0
+margin_right = 122.0
+margin_bottom = 24.0
+text = "+"
