@@ -1,28 +1,59 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://UiTheme.tres" type="Theme" id=1]
 [ext_resource path="res://ComponentUI.gd" type="Script" id=2]
+[ext_resource path="res://assets/orb_black.png" type="Texture" id=3]
+[ext_resource path="res://assets/ball.png" type="Texture" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Show"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ false, true ]
+}
 
 [node name="Control" type="Node2D"]
 light_mask = 0
+position = Vector2( 0, 8 )
 script = ExtResource( 2 )
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2( -3.68291, 481.747 )
-color = Color( 0.0235294, 0.0117647, 0.443137, 1 )
-polygon = PoolVector2Array( 3.85518, -476.251, 122.221, -469.134, 122.971, -456.398, 21.8349, -457.147, 21.0857, -428.68, 10.5976, -429.054 )
+[node name="Panel" type="Panel" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 48.0
+margin_top = 40.0
+margin_right = 86.0001
+margin_bottom = 89.0
+rect_scale = Vector2( 0.832043, 0.653976 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
 
-[node name="Polygon2D2" type="Polygon2D" parent="Polygon2D"]
-position = Vector2( 123.72, -408.078 )
-rotation = -3.14159
-color = Color( 0.486275, 0.0117647, 0.0117647, 1 )
-offset = Vector2( -3.85518, 475.127 )
-polygon = PoolVector2Array( 3.85518, -476.251, 122.221, -469.134, 122.971, -456.398, 21.8349, -457.147, 21.0857, -428.68, 10.5976, -429.054 )
+[node name="orb_black" type="Sprite" parent="Panel"]
+self_modulate = Color( 1, 1, 1, 0.435294 )
+position = Vector2( 19.2298, 24.4657 )
+scale = Vector2( 0.315508, 0.430813 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="ComponentUI" type="VBoxContainer" parent="."]
+visible = false
 light_mask = 0
-margin_right = 960.0
-margin_bottom = 960.0
+margin_left = 128.0
+margin_top = -8.0
+margin_right = 382.0
+margin_bottom = 160.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme = ExtResource( 1 )
@@ -30,10 +61,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ComponentUI"]
+anims/Show = SubResource( 1 )
+
 [node name="HBoxContainer" type="HBoxContainer" parent="ComponentUI"]
 light_mask = 0
-margin_right = 122.0
-margin_bottom = 24.0
+margin_right = 254.0
+margin_bottom = 70.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 __meta__ = {
@@ -41,40 +75,51 @@ __meta__ = {
 }
 
 [node name="btn_speed_min" type="Button" parent="ComponentUI/HBoxContainer"]
+self_modulate = Color( 0.0196078, 1, 0.678431, 1 )
 light_mask = 0
-margin_right = 21.0
-margin_bottom = 24.0
+margin_right = 87.0
+margin_bottom = 70.0
 text = "-"
+icon = ExtResource( 4 )
 
 [node name="VSeparator" type="Label" parent="ComponentUI/HBoxContainer"]
 light_mask = 0
-margin_left = 25.0
-margin_top = 3.0
-margin_right = 97.0
-margin_bottom = 21.0
+margin_left = 91.0
+margin_top = 26.0
+margin_right = 163.0
+margin_bottom = 43.0
 rect_min_size = Vector2( 15, 0 )
 text = "<Speed> "
 align = 1
 valign = 1
 
 [node name="btn_speed_plus" type="Button" parent="ComponentUI/HBoxContainer"]
+modulate = Color( 1, 0.780392, 0.501961, 1 )
 light_mask = 0
-margin_left = 101.0
-margin_right = 122.0
-margin_bottom = 24.0
+margin_left = 167.0
+margin_right = 254.0
+margin_bottom = 70.0
 text = "+"
+icon = ExtResource( 4 )
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="ComponentUI"]
 light_mask = 0
-margin_top = 28.0
-margin_right = 122.0
-margin_bottom = 48.0
+margin_top = 74.0
+margin_right = 146.0
+margin_bottom = 94.0
 size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="VSeparator2" type="VSeparator" parent="ComponentUI/HBoxContainer3"]
+margin_right = 4.0
+margin_bottom = 3.0
+size_flags_horizontal = 3
 size_flags_vertical = 0
 
 [node name="lbl_speed" type="Label" parent="ComponentUI/HBoxContainer3"]
 light_mask = 0
-margin_right = 24.0
+margin_left = 8.0
+margin_right = 32.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 24, 20 )
 text = "0"
@@ -83,8 +128,8 @@ valign = 1
 
 [node name="lbl_pos" type="Label" parent="ComponentUI/HBoxContainer3"]
 light_mask = 0
-margin_left = 28.0
-margin_right = 94.0
+margin_left = 36.0
+margin_right = 102.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 66, 20 )
 text = "x,x"
@@ -92,21 +137,33 @@ align = 1
 valign = 1
 uppercase = true
 
+[node name="VSeparator4" type="VSeparator" parent="ComponentUI/HBoxContainer3"]
+margin_left = 106.0
+margin_right = 110.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+
 [node name="lbl_offset" type="Label" parent="ComponentUI/HBoxContainer3"]
 light_mask = 0
-margin_left = 98.0
-margin_right = 122.0
+margin_left = 114.0
+margin_right = 138.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 24, 20 )
 text = "0"
 align = 1
 valign = 1
 
+[node name="VSeparator" type="VSeparator" parent="ComponentUI/HBoxContainer3"]
+margin_left = 142.0
+margin_right = 146.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+
 [node name="HBoxContainer2" type="HBoxContainer" parent="ComponentUI"]
 light_mask = 0
-margin_top = 52.0
-margin_right = 122.0
-margin_bottom = 76.0
+margin_top = 98.0
+margin_right = 254.0
+margin_bottom = 168.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 __meta__ = {
@@ -114,25 +171,33 @@ __meta__ = {
 }
 
 [node name="btn_offset_min" type="Button" parent="ComponentUI/HBoxContainer2"]
+self_modulate = Color( 0.0196078, 1, 0.678431, 1 )
 light_mask = 0
-margin_right = 21.0
-margin_bottom = 24.0
+margin_right = 87.0
+margin_bottom = 70.0
 text = "-"
+icon = ExtResource( 4 )
 
 [node name="VSeparator2" type="Label" parent="ComponentUI/HBoxContainer2"]
 light_mask = 0
-margin_left = 25.0
-margin_top = 3.0
-margin_right = 97.0
-margin_bottom = 21.0
+margin_left = 91.0
+margin_top = 26.0
+margin_right = 163.0
+margin_bottom = 43.0
 rect_min_size = Vector2( 15, 0 )
 text = "<Offset>"
 align = 1
 valign = 1
 
 [node name="btn_offset_plus" type="Button" parent="ComponentUI/HBoxContainer2"]
+self_modulate = Color( 1, 0.780392, 0.501961, 1 )
 light_mask = 0
-margin_left = 101.0
-margin_right = 122.0
-margin_bottom = 24.0
+margin_left = 167.0
+margin_right = 254.0
+margin_bottom = 70.0
 text = "+"
+icon = ExtResource( 4 )
+align = 0
+[connection signal="mouse_entered" from="Panel" to="." method="_on_Panel_mouse_entered"]
+[connection signal="mouse_entered" from="ComponentUI" to="." method="_on_ComponentUI_mouse_entered"]
+[connection signal="mouse_exited" from="ComponentUI" to="." method="_on_ComponentUI_mouse_exited"]

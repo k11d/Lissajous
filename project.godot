@@ -9,18 +9,12 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Sprite",
-"class": "BaseSpinner",
-"language": "GDScript",
-"path": "res://backup/scripts/BaseSpinner.gd"
-}, {
 "base": "Position2D",
 "class": "SingleComponent",
 "language": "GDScript",
 "path": "res://SingleComponent.gd"
 } ]
 _global_script_class_icons={
-"BaseSpinner": "",
 "SingleComponent": "res://assets/orb_red.png"
 }
 
