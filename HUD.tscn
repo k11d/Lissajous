@@ -1,0 +1,306 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/fonts/SmallFont_blue.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/fonts/SmallFont_green.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/fonts/TitleFont.res" type="DynamicFont" id=3]
+[ext_resource path="res://assets/fonts/SmallFontTheme.tres" type="Theme" id=4]
+[ext_resource path="res://assets/fonts/BigBlue_TerminalPlus.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://assets/fonts/SmallFont_red.tres" type="DynamicFont" id=6]
+
+[sub_resource type="Theme" id=7]
+default_font = ExtResource( 6 )
+
+[sub_resource type="Theme" id=8]
+default_font = ExtResource( 2 )
+
+[sub_resource type="Theme" id=4]
+default_font = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 18
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 5 )
+
+[node name="HUD" type="VBoxContainer"]
+anchor_bottom = 1.0
+margin_left = 8.49484
+margin_top = 5.66325
+margin_right = 258.495
+margin_bottom = 236.663
+theme = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuitButton" type="Button" parent="."]
+visible = false
+margin_right = 250.0
+margin_bottom = 24.0
+text = "Quit"
+
+[node name="HSeparator2" type="HSeparator" parent="."]
+visible = false
+margin_top = 28.0
+margin_right = 250.0
+margin_bottom = 32.0
+
+[node name="Panel" type="PanelContainer" parent="."]
+visible = false
+margin_top = 36.0
+margin_right = 250.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 0, 20 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Panel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 243.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 0, 20 )
+size_flags_horizontal = 3
+size_flags_vertical = 5
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.615686, 0.615686, 0.615686, 1 )
+text = "Tracer"
+align = 1
+max_lines_visible = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Radius" type="PanelContainer" parent="."]
+visible = false
+margin_top = 74.0
+margin_right = 250.0
+margin_bottom = 126.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Radius"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 243.0
+margin_bottom = 45.0
+theme = SubResource( 7 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Radius/HBoxContainer"]
+margin_right = 211.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Radius/HBoxContainer/VBoxContainer"]
+margin_right = 211.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Radius/HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_right = 18.0
+margin_bottom = 17.0
+text = "Rx"
+
+[node name="XRadius" type="HSlider" parent="Radius/HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 22.0
+margin_right = 211.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+max_value = 1000.0
+value = 300.0
+rounded = true
+allow_greater = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Radius/HBoxContainer/VBoxContainer"]
+margin_top = 21.0
+margin_right = 211.0
+margin_bottom = 38.0
+
+[node name="Label" type="Label" parent="Radius/HBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_right = 18.0
+margin_bottom = 17.0
+text = "Ry"
+
+[node name="YRadius" type="HSlider" parent="Radius/HBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 22.0
+margin_right = 211.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+max_value = 1000.0
+value = 300.0
+rounded = true
+allow_greater = true
+
+[node name="RadiusReset" type="Button" parent="Radius/HBoxContainer"]
+margin_left = 215.0
+margin_right = 236.0
+margin_bottom = 38.0
+text = "R"
+
+[node name="Theta" type="PanelContainer" parent="."]
+visible = false
+margin_top = 130.0
+margin_right = 250.0
+margin_bottom = 182.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Theta"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 243.0
+margin_bottom = 45.0
+theme = SubResource( 8 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Theta/HBoxContainer"]
+margin_right = 211.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Theta/HBoxContainer/VBoxContainer"]
+margin_right = 211.0
+margin_bottom = 17.0
+
+[node name="Label" type="Label" parent="Theta/HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_right = 18.0
+margin_bottom = 17.0
+text = "Tx"
+
+[node name="XTheta" type="HSlider" parent="Theta/HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 22.0
+margin_right = 211.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+max_value = 6.28
+step = 0.01
+value = 3.14
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Theta/HBoxContainer/VBoxContainer"]
+margin_top = 21.0
+margin_right = 211.0
+margin_bottom = 38.0
+
+[node name="Label" type="Label" parent="Theta/HBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_right = 18.0
+margin_bottom = 17.0
+text = "Ty"
+
+[node name="YTheta" type="HSlider" parent="Theta/HBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 22.0
+margin_right = 211.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+max_value = 6.28
+step = 0.01
+value = 3.14
+
+[node name="ThetaReset" type="Button" parent="Theta/HBoxContainer"]
+margin_left = 215.0
+margin_right = 236.0
+margin_bottom = 38.0
+text = "R"
+
+[node name="Speed" type="PanelContainer" parent="."]
+visible = false
+margin_top = 186.0
+margin_right = 250.0
+margin_bottom = 238.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Speed"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 243.0
+margin_bottom = 45.0
+theme = SubResource( 4 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Speed/HBoxContainer"]
+margin_right = 211.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Speed/HBoxContainer/VBoxContainer"]
+margin_right = 211.0
+margin_bottom = 17.0
+
+[node name="Label" type="Label" parent="Speed/HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_right = 18.0
+margin_bottom = 17.0
+text = "Sx"
+
+[node name="XSpeed" type="HSlider" parent="Speed/HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 22.0
+margin_right = 211.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+max_value = 9.9
+step = 0.1
+value = 1.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Speed/HBoxContainer/VBoxContainer"]
+margin_top = 21.0
+margin_right = 211.0
+margin_bottom = 38.0
+
+[node name="Label" type="Label" parent="Speed/HBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_right = 18.0
+margin_bottom = 17.0
+text = "Sy"
+
+[node name="YSpeed" type="HSlider" parent="Speed/HBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 22.0
+margin_right = 211.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+max_value = 9.9
+step = 0.1
+value = 1.0
+
+[node name="SpeedReset" type="Button" parent="Speed/HBoxContainer"]
+margin_left = 215.0
+margin_right = 236.0
+margin_bottom = 38.0
+text = "R"
+
+[node name="HSeparator" type="HSeparator" parent="."]
+visible = false
+margin_top = 242.0
+margin_right = 250.0
+margin_bottom = 246.0
+
+[node name="Panel2" type="PanelContainer" parent="."]
+visible = false
+margin_top = 250.0
+margin_right = 250.0
+margin_bottom = 284.0
+rect_min_size = Vector2( 0, 20 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="Panel2"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 243.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 0, 20 )
+size_flags_horizontal = 3
+size_flags_vertical = 5
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.615686, 0.615686, 0.615686, 1 )
+text = "Path"
+align = 1
+max_lines_visible = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ClearTrace" type="Button" parent="."]
+visible = false
+margin_top = 288.0
+margin_right = 250.0
+margin_bottom = 312.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+text = "Clear"
+
+[node name="MenuButton" type="Button" parent="."]
+margin_right = 250.0
+margin_bottom = 24.0
+toggle_mode = true
+text = "^-Menu-^"

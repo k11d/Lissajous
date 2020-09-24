@@ -9,13 +9,13 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Position2D",
-"class": "SingleComponent",
+"base": "Node2D",
+"class": "Tracer",
 "language": "GDScript",
-"path": "res://SingleComponent.gd"
+"path": "res://XY.gd"
 } ]
 _global_script_class_icons={
-"SingleComponent": "res://assets/orb_red.png"
+"Tracer": "res://assets/images/dot.png"
 }
 
 [application]
@@ -23,7 +23,7 @@ _global_script_class_icons={
 config/name="Lissajous"
 run/main_scene="res://Main.tscn"
 boot_splash/bg_color=Color( 0.0431373, 0.0509804, 0.0784314, 1 )
-config/icon="res://assets/icon.png"
+config/icon="res://assets/images/icon.png"
 
 [display]
 

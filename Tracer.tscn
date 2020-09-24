@@ -1,57 +1,391 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://YComponent.tscn" type="PackedScene" id=2]
-[ext_resource path="res://XComponent.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/fonts/SmallFont_blue.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/fonts/SmallFont_green.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/fonts/TitleFont.res" type="DynamicFont" id=3]
+[ext_resource path="res://assets/Laser.material" type="Material" id=4]
+[ext_resource path="res://assets/images/dot.png" type="Texture" id=5]
+[ext_resource path="res://XY.gd" type="Script" id=6]
+[ext_resource path="res://assets/fonts/SmallFontTheme.tres" type="Theme" id=7]
+[ext_resource path="res://assets/fonts/BigBlue_TerminalPlus.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://assets/images/orb_red.png" type="Texture" id=9]
+[ext_resource path="res://assets/images/orb_red_n.png" type="Texture" id=10]
+[ext_resource path="res://assets/fonts/SmallFont_red.tres" type="DynamicFont" id=11]
+[ext_resource path="res://assets/images/orb_green.png" type="Texture" id=12]
+[ext_resource path="res://HUD.gd" type="Script" id=13]
 
-[sub_resource type="GDScript" id=1]
-script/source = "extends Node2D
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0.796681, 0.904564, 0.975104 )
+colors = PoolColorArray( 0.804688, 0, 1, 1, 0, 1, 0.695312, 1, 1, 1, 1, 1 )
 
+[sub_resource type="Theme" id=2]
+default_font = ExtResource( 11 )
 
-var xcomp
-var ycomp
-export(float, 0.0, 6.28, 0.1) var _theta_x := PI setget _set_theta_x
-export(float, 0.0, 500.0, 1.0) var _radius_x := 60.0 setget _set_radius_x
-export(float, 0.0, 10.0, 0.1) var _speed_x := 4.0 setget _set_speed_x
+[sub_resource type="Theme" id=3]
+default_font = ExtResource( 2 )
 
-export(float, 0.0, 6.28, 0.1) var _theta_y := PI setget _set_theta_y
-export(float, 0.0, 500.0, 1.0) var _radius_y := 60.0 setget _set_radius_y
-export(float, 0.0, 10.0, 0.1) var _speed_y := 4.0 setget _set_speed_y
+[sub_resource type="Theme" id=4]
+default_font = ExtResource( 1 )
 
-
-func _ready():
-	xcomp = get_node(\"Tracer/XComponent\")
-	ycomp = get_node(\"Tracer/YComponent\")
-
-func _set_theta_x(t):
-	_theta_x = t
-	xcomp._radius = _theta_x
-	
-func _set_radius_x(r):
-	_radius_x = r
-	xcomp._radius = _radius_x
-	
-func _set_speed_x(v):
-	_speed_x = v
-	xcomp._speed = _speed_x
-
-func _set_theta_y(t):
-	_theta_y = t
-	ycomp._theta = _theta_y
-	
-func _set_radius_y(r):
-	_radius_y = r
-	ycomp._radius = _radius_y
-	
-func _set_speed_y(v):
-	_speed_y = v
-	ycomp._speed = _speed_y
-"
+[sub_resource type="DynamicFont" id=5]
+size = 18
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 8 )
 
 [node name="Tracer" type="Node2D"]
-script = SubResource( 1 )
+script = ExtResource( 6 )
 
-[node name="XComponent" parent="." instance=ExtResource( 3 )]
-position = Vector2( 91.6124, 312.889 )
+[node name="XComp" type="Node2D" parent="."]
 
-[node name="YComponent" parent="." instance=ExtResource( 2 )]
-position = Vector2( 366.972, 102.266 )
+[node name="Sprite" type="Sprite" parent="XComp"]
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 9 )
+normal_map = ExtResource( 10 )
+
+[node name="Line2D3" type="Line2D" parent="XComp/Sprite"]
+points = PoolVector2Array( 0, 0, 0, 7000 )
+default_color = Color( 0.937255, 0.0352941, 0.0352941, 0.588235 )
+
+[node name="YComp" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="YComp"]
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 12 )
+normal_map = ExtResource( 10 )
+
+[node name="Line2D2" type="Line2D" parent="YComp/Sprite"]
+position = Vector2( 55.4365, 0 )
+points = PoolVector2Array( 0, 0, 7000, 0 )
+default_color = Color( 0.0352941, 0.937255, 0.133333, 0.588235 )
+
+[node name="Pen" type="Position2D" parent="."]
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="LabelX" type="Label" parent="Pen"]
+margin_left = -48.192
+margin_top = 0.31498
+margin_right = -8.19199
+margin_bottom = 14.315
+text = "X:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelY" type="Label" parent="Pen"]
+margin_left = -48.192
+margin_top = 14.8041
+margin_right = -8.19199
+margin_bottom = 28.8041
+text = "Y:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Pen"]
+material = ExtResource( 4 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 5 )
+
+[node name="TraceLine" type="Line2D" parent="."]
+width = 4.0
+default_color = Color( 0.984314, 0.858824, 0.180392, 1 )
+gradient = SubResource( 1 )
+antialiased = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HUD" type="VBoxContainer" parent="."]
+anchor_bottom = 1.0
+margin_left = 8.49484
+margin_top = 5.66325
+margin_right = 258.495
+margin_bottom = 236.663
+theme = ExtResource( 7 )
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuButton" type="Button" parent="HUD"]
+margin_right = 250.0
+margin_bottom = 24.0
+toggle_mode = true
+text = "v-Menu-v"
+
+[node name="CloseButton" type="Button" parent="HUD"]
+visible = false
+margin_top = 28.0
+margin_right = 250.0
+margin_bottom = 52.0
+text = "Close"
+
+[node name="HSeparator2" type="HSeparator" parent="HUD"]
+visible = false
+margin_top = 28.0
+margin_right = 250.0
+margin_bottom = 32.0
+
+[node name="Panel" type="PanelContainer" parent="HUD"]
+visible = false
+margin_top = 28.0
+margin_right = 250.0
+margin_bottom = 230.0
+rect_min_size = Vector2( 0, 20 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="HUD/Panel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 243.0
+margin_bottom = 195.0
+rect_min_size = Vector2( 0, 20 )
+size_flags_horizontal = 3
+size_flags_vertical = 5
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.615686, 0.615686, 0.615686, 1 )
+text = "Tracer"
+align = 1
+max_lines_visible = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Radius" type="PanelContainer" parent="HUD"]
+visible = false
+margin_top = 74.0
+margin_right = 250.0
+margin_bottom = 126.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Radius"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 243.0
+margin_bottom = 45.0
+theme = SubResource( 2 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Radius/HBoxContainer"]
+margin_right = 211.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Radius/HBoxContainer/VBoxContainer"]
+margin_right = 211.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="HUD/Radius/HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_right = 18.0
+margin_bottom = 17.0
+text = "Rx"
+
+[node name="XRadius" type="HSlider" parent="HUD/Radius/HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 22.0
+margin_right = 211.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+max_value = 1000.0
+value = 300.0
+rounded = true
+allow_greater = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HUD/Radius/HBoxContainer/VBoxContainer"]
+margin_top = 21.0
+margin_right = 211.0
+margin_bottom = 38.0
+
+[node name="Label" type="Label" parent="HUD/Radius/HBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_right = 18.0
+margin_bottom = 17.0
+text = "Ry"
+
+[node name="YRadius" type="HSlider" parent="HUD/Radius/HBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 22.0
+margin_right = 211.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+max_value = 1000.0
+value = 300.0
+rounded = true
+allow_greater = true
+
+[node name="RadiusReset" type="Button" parent="HUD/Radius/HBoxContainer"]
+margin_left = 215.0
+margin_right = 236.0
+margin_bottom = 38.0
+text = "R"
+
+[node name="Theta" type="PanelContainer" parent="HUD"]
+visible = false
+margin_top = 130.0
+margin_right = 250.0
+margin_bottom = 182.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Theta"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 243.0
+margin_bottom = 45.0
+theme = SubResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Theta/HBoxContainer"]
+margin_right = 211.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Theta/HBoxContainer/VBoxContainer"]
+margin_right = 211.0
+margin_bottom = 17.0
+
+[node name="Label" type="Label" parent="HUD/Theta/HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_right = 18.0
+margin_bottom = 17.0
+text = "Tx"
+
+[node name="XTheta" type="HSlider" parent="HUD/Theta/HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 22.0
+margin_right = 211.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+max_value = 6.28
+step = 0.01
+value = 3.14
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HUD/Theta/HBoxContainer/VBoxContainer"]
+margin_top = 21.0
+margin_right = 211.0
+margin_bottom = 38.0
+
+[node name="Label" type="Label" parent="HUD/Theta/HBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_right = 18.0
+margin_bottom = 17.0
+text = "Ty"
+
+[node name="YTheta" type="HSlider" parent="HUD/Theta/HBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 22.0
+margin_right = 211.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+max_value = 6.28
+step = 0.01
+value = 3.14
+
+[node name="ThetaReset" type="Button" parent="HUD/Theta/HBoxContainer"]
+margin_left = 215.0
+margin_right = 236.0
+margin_bottom = 38.0
+text = "R"
+
+[node name="Speed" type="PanelContainer" parent="HUD"]
+visible = false
+margin_top = 186.0
+margin_right = 250.0
+margin_bottom = 238.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Speed"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 243.0
+margin_bottom = 45.0
+theme = SubResource( 4 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Speed/HBoxContainer"]
+margin_right = 211.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Speed/HBoxContainer/VBoxContainer"]
+margin_right = 211.0
+margin_bottom = 17.0
+
+[node name="Label" type="Label" parent="HUD/Speed/HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_right = 18.0
+margin_bottom = 17.0
+text = "Sx"
+
+[node name="XSpeed" type="HSlider" parent="HUD/Speed/HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 22.0
+margin_right = 211.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+max_value = 9.9
+step = 0.1
+value = 1.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HUD/Speed/HBoxContainer/VBoxContainer"]
+margin_top = 21.0
+margin_right = 211.0
+margin_bottom = 38.0
+
+[node name="Label" type="Label" parent="HUD/Speed/HBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_right = 18.0
+margin_bottom = 17.0
+text = "Sy"
+
+[node name="YSpeed" type="HSlider" parent="HUD/Speed/HBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 22.0
+margin_right = 211.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+max_value = 9.9
+step = 0.1
+value = 1.0
+
+[node name="SpeedReset" type="Button" parent="HUD/Speed/HBoxContainer"]
+margin_left = 215.0
+margin_right = 236.0
+margin_bottom = 38.0
+text = "R"
+
+[node name="HSeparator" type="HSeparator" parent="HUD"]
+visible = false
+margin_top = 242.0
+margin_right = 250.0
+margin_bottom = 246.0
+
+[node name="Panel2" type="PanelContainer" parent="HUD"]
+visible = false
+margin_top = 250.0
+margin_right = 250.0
+margin_bottom = 284.0
+rect_min_size = Vector2( 0, 20 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 7 )
+
+[node name="Label" type="Label" parent="HUD/Panel2"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 243.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 0, 20 )
+size_flags_horizontal = 3
+size_flags_vertical = 5
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.615686, 0.615686, 0.615686, 1 )
+text = "Path"
+align = 1
+max_lines_visible = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ClearTrace" type="Button" parent="HUD"]
+visible = false
+margin_top = 288.0
+margin_right = 250.0
+margin_bottom = 312.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+text = "Clear"
+[connection signal="pressed" from="HUD/MenuButton" to="." method="_on_MenuButton_pressed"]
+[connection signal="pressed" from="HUD/CloseButton" to="HUD" method="_on_CloseButton_pressed"]
+[connection signal="value_changed" from="HUD/Radius/HBoxContainer/VBoxContainer/HBoxContainer/XRadius" to="." method="_on_XRadius_value_changed"]
+[connection signal="value_changed" from="HUD/Radius/HBoxContainer/VBoxContainer/HBoxContainer2/YRadius" to="." method="_on_YRadius_value_changed"]
+[connection signal="value_changed" from="HUD/Theta/HBoxContainer/VBoxContainer/HBoxContainer/XTheta" to="." method="_on_XTheta_value_changed"]
+[connection signal="value_changed" from="HUD/Theta/HBoxContainer/VBoxContainer/HBoxContainer2/YTheta" to="." method="_on_YTheta_value_changed"]
+[connection signal="value_changed" from="HUD/Speed/HBoxContainer/VBoxContainer/HBoxContainer/XSpeed" to="." method="_on_XSpeed_value_changed"]
